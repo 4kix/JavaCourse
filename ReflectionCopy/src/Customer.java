@@ -1,9 +1,8 @@
-
 public class Customer {
 	
-	public String firstName;
-	public String lastName;
-	public Account account;
+	private String firstName;
+	private String lastName;
+	private Account account;
 	
 	Customer() {
 		

@@ -1,4 +1,5 @@
 import java.lang.reflect.Field;
+
 public class Main {
 
 	public static void main(String[] args) {
@@ -27,15 +28,15 @@ public class Main {
 			Class<? extends Object> copy2 =entity2.getClass();
 
 			Field[] fromFields = copy1.getDeclaredFields();
-			Field[]   toFields = copy2.getDeclaredFields();
-
 			Object value = null;
 
 			for (Field field : fromFields){
-
-
+	
+				field.setAccessible(true);
+				
 			    Field field1 = copy2.getDeclaredField(field.getName());
-
+			    field1.setAccessible(true);
+			    
 			    System.out.println(field.getName());
 			    value =field.get(entity);
 			    field1.set(entity2,value);
