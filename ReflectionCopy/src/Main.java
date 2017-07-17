@@ -5,6 +5,8 @@ public class Main {
 	public static void main(String[] args) {
 		
 		Customer customer1 = new Customer("Vasia", "Pupkin");
+		Account acc = new Account(500);
+		customer1.setAccount(acc);
 		Customer customer2 = new Customer();
 		
 		try {
@@ -20,10 +22,9 @@ public class Main {
 		
 	}
 
-	public static <T1 extends Object, T2 extends Object>  void copy(T1     
-			entity, T2 entity2 ) throws IllegalAccessException,      NoSuchFieldException {
-			Class<? extends Object> copy1 = entity.getClass();
-			Class<? extends Object> copy2 =entity2.getClass();
+	public static <T1, T2>  void copy(T1 entity, T2 entity2) throws IllegalAccessException, NoSuchFieldException {
+			Class<?> copy1 = entity.getClass();
+			Class<?> copy2 = entity2.getClass();
 
 			Field[] fromFields = copy1.getDeclaredFields();
 			Object value = null;
@@ -32,12 +33,12 @@ public class Main {
 	
 				field.setAccessible(true);
 				
-			    Field field1 = copy2.getDeclaredField(field.getName());
-			    field1.setAccessible(true);
+			    Field toField = copy2.getDeclaredField(field.getName());
+			    toField.setAccessible(true);
 			    
 			    System.out.println(field.getName());
-			    value =field.get(entity);
-			    field1.set(entity2,value);
+			    value = field.get(entity);
+			    toField.set(entity2, value);
 			}
 	}
 }
