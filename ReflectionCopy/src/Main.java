@@ -10,10 +10,8 @@ public class Main {
 		try {
 			copy(customer1, customer2);
 		} catch (IllegalAccessException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (NoSuchFieldException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
