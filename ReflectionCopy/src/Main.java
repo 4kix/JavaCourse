@@ -1,4 +1,7 @@
+import java.lang.reflect.Array;
 import java.lang.reflect.Field;
+import java.util.Arrays;
+
 
 public class Main {
 
@@ -10,7 +13,7 @@ public class Main {
 		Customer customer2 = new Customer();
 		
 		try {
-			copy(customer1, customer2);
+			reflectionCopy.classCopy(customer1, customer2);
 		} catch (IllegalAccessException e) {
 			e.printStackTrace();
 		} catch (NoSuchFieldException e) {
@@ -20,25 +23,11 @@ public class Main {
 		System.out.println(customer1);
 		System.out.println(customer2);
 		
+		Integer[] array1 = {1,2,3,4,5};
+		System.out.println(Arrays.toString(array1));
+		Integer[] array2 = reflectionCopy.arrayCopy(array1);
+		System.out.println(Arrays.toString(array2));
 	}
 
-	public static <T1, T2>  void copy(T1 entity, T2 entity2) throws IllegalAccessException, NoSuchFieldException {
-			Class<?> copy1 = entity.getClass();
-			Class<?> copy2 = entity2.getClass();
-
-			Field[] fromFields = copy1.getDeclaredFields();
-			Object value = null;
-
-			for (Field field : fromFields){
 	
-				field.setAccessible(true);
-				
-			    Field toField = copy2.getDeclaredField(field.getName());
-			    toField.setAccessible(true);
-			    
-			    System.out.println(field.getName());
-			    value = field.get(entity);
-			    toField.set(entity2, value);
-			}
-	}
 }
