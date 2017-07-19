@@ -36,14 +36,21 @@ class XLoader extends ClassLoader {
 	}
 	
 	private boolean checkClass(Class<?> loadedClass) {
-		Field[] fields = loadedClass.getClass().getDeclaredFields();
+		/*Field[] fields = loadedClass.getClass().getDeclaredFields();
 			
 		for (Field field : fields) {
 			
 			field.setAccessible(true);
 			Class typeOfField = field.getType();
 			
-		}
+		}*/
+		ObjectSizer sizer = new ObjectSizer();
+		long size = sizer.getObjectSize(loadedClass);
+		System.out.println(size);
+		if (size > 300) {
+			System.err.println("" + loadedClass.getName() +": CLASS SIZE IS TOO BIG");
+			return false;
+		}		
 		return true;
 	}
 }
