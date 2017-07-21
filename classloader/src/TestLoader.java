@@ -4,8 +4,8 @@ public class TestLoader {
 	public static void main(String[] args) throws Exception {
 
 		HashMap <String, String> mappings = new HashMap <String, String>();
-		mappings.put("TestClass1", "C:\\Users\\student\\git\\JavaCourse\\classloader\\bin\\TestClass1.class");
-		mappings.put("TestClass2", "C:\\Users\\student\\git\\JavaCourse\\classloader\\bin\\TestClass2.class");
+		mappings.put("TestClass1", "C:\\My Documents\\GitHub\\JavaCourse\\classloader\\bin\\TestClass1.class");
+		mappings.put("TestClass2", "C:\\My Documents\\GitHub\\JavaCourse\\classloader\\bin\\TestClass2.class");
 		/*
 		mappings.put("TestClassInterface", "C:\\Users\\Ilya\\Desktop\\classloader\\bin\\TestClassInterface.class");
 		*/
