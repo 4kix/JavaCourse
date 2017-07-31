@@ -5,6 +5,11 @@ import java.util.*;
 import by.iba.entity.Professor;
 import by.iba.entity.Student;
 
+/**Holds many-to-many associations between two classes
+ * 
+ * @author Ilya Falko
+ *
+ */
 public class AssociationHolder {
 	private Map<Student, LinkedList<Professor>> studToProf;
 	private Map<Professor, LinkedList<Student>> profToStud;
@@ -14,7 +19,11 @@ public class AssociationHolder {
 		profToStud = new HashMap<Professor, LinkedList<Student>>();
 	}
 	
-	
+	/** Adds new association
+	 * 
+	 * @param student
+	 * @param professor
+	 */
 	public void add(Student student, Professor professor) {
 		
 		//adding new Student to Professor association
@@ -42,14 +51,21 @@ public class AssociationHolder {
 		add(student, professor);
 	}
 	
+	/**Method for getting a list of students associated with professor
+	 * 
+	 * @param professor professor
+	 * @return returns a list of students
+	 */
 	public List<Student> getStudentsByProfessor(Professor professor) {
-		//null pointer exception		
-		
 		return profToStud.get(professor);
 	}
 	
+	/**Method for getting a list of professors associated with student
+	 * 
+	 * @param student - student
+	 * @return returns a list of professors
+	 */
 	public List<Professor> getProfessorsByStudent(Student student) {
-		//null pointer exception
 		return studToProf.get(student);
 	}
 }
