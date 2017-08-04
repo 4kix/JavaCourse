@@ -1,6 +1,6 @@
 package by.iba.entity;
 
-public class Professor {
+public class Professor extends UniversityMember {
 
 	private String firstName;
 	private String secondName;

@@ -4,68 +4,67 @@ import java.util.*;
 
 import by.iba.entity.Professor;
 import by.iba.entity.Student;
+import by.iba.entity.UniversityMember;
 
 /**Holds many-to-many associations between two classes
  * 
  * @author Ilya Falko
  *
  */
-public class AssociationHolder {
-	private Map<Student, LinkedList<Professor>> studToProf;
-	private Map<Professor, LinkedList<Student>> profToStud;
+public class AssociationHolder implements HolderInterface {
+	private Map<UniversityMember, LinkedList<UniversityMember>> leftToRight;
+	private Map<UniversityMember, LinkedList<UniversityMember>> rightToLeft;
 	
 	public AssociationHolder() {
-		studToProf = new HashMap<Student, LinkedList<Professor>>();
-		profToStud = new HashMap<Professor, LinkedList<Student>>();
+		leftToRight = new HashMap<UniversityMember, LinkedList<UniversityMember>>();
+		rightToLeft = new HashMap<UniversityMember, LinkedList<UniversityMember>>();
 	}
 	
 	/** Adds new association
 	 * 
-	 * @param student
-	 * @param professor
+	 * @param leftMember
+	 * @param rightMember
 	 */
-	public void add(Student student, Professor professor) {
+	public void add(UniversityMember leftMember, UniversityMember rightMember) {
 		
-		//adding new Student to Professor association
-		if (studToProf.containsKey(student)) {
-			List<Professor> profList = studToProf.get(student);
-			profList.add(professor);
+		//adding new left to right association
+		if (leftToRight.containsKey(leftMember)) {
+			List<UniversityMember> rightList = leftToRight.get(leftMember);
+			rightList.add(rightMember);
 		} else {
-			LinkedList<Professor> profList= new LinkedList<Professor>();
-			profList.add(professor);
-			studToProf.put(student, profList);
+			LinkedList<UniversityMember> rightList= new LinkedList<UniversityMember>();
+			rightList.add(rightMember);
+			leftToRight.put(leftMember, rightList);
 		}
 		
-		//adding new Professor to Student association
-		if (profToStud.containsKey(professor)) {
-			List<Student> studList = profToStud.get(professor);
-			studList.add(student);
+		//adding new right to left association
+		if (rightToLeft.containsKey(rightMember)) {
+			List<UniversityMember> leftList = rightToLeft.get(rightMember);
+			leftList.add(leftMember);
 		} else {
-			LinkedList<Student> studList= new LinkedList<Student>();
-			studList.add(student);
-			profToStud.put(professor, studList);
+			LinkedList<UniversityMember> leftList= new LinkedList<UniversityMember>();
+			leftList.add(leftMember);
+			rightToLeft.put(rightMember, leftList);
 		}
 	}
 	
-	public void add(Professor professor, Student student) {
-		add(student, professor);
+	
+	
+	/**Method for getting a list of left members associated with right member
+	 * 
+	 * @param rightMember -rightMember
+	 * @return returns a list of Left Members
+	 */
+	public List<UniversityMember> getLeftByRight(UniversityMember rightMember) {
+		return rightToLeft.get(rightMember);
 	}
 	
-	/**Method for getting a list of students associated with professor
+	/**Method for getting a list of right members associated with left member
 	 * 
-	 * @param professor professor
-	 * @return returns a list of students
+	 * @param leftMember - leftMember
+	 * @return returns a list of Right Members
 	 */
-	public List<Student> getStudentsByProfessor(Professor professor) {
-		return profToStud.get(professor);
-	}
-	
-	/**Method for getting a list of professors associated with student
-	 * 
-	 * @param student - student
-	 * @return returns a list of professors
-	 */
-	public List<Professor> getProfessorsByStudent(Student student) {
-		return studToProf.get(student);
+	public List<UniversityMember> getRightByLeft(UniversityMember leftMember) {
+		return leftToRight.get(leftMember);
 	}
 }
