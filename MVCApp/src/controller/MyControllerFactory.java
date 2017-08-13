@@ -53,7 +53,7 @@ public class MyControllerFactory implements AbstractFactory {
 	 * @return instance of the controller
 	 */
 	@Override
-	public MyControllerImpl getByView(String viewName) {
+	public MyController getByView(String viewName) {
 		
 		//loading map
 		loadMapping();
