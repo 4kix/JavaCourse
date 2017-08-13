@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mapping>
+	<map view="view.MyViewImpl" controller="controller.MyControllerImpl"/>
+	<map view="AnotherView" controller="AnotherController"/>
+</mapping>

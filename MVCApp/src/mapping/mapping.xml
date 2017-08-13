@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE mapping PUBLIC "-//EXOLAB/Castor Mapping DTD Version 1.0//EN"
+"http://castor.org/mapping.dtd">
+
+<mapping>
+	<class name="controller.MyControllerFactory"> <!-- change class -->
+		<map-to xml="mapping"/>
+		<field name="map" collection="map" get-method="getMap" set-method="setMap"> 
+		<bind-xml name="map">
+			<class name="org.exolab.castor.mapping.MapItem">
+				<field name="key" type="string">
+					<bind-xml name="view" node="attribute" />
+				</field>
+				<field name="value" type="string">
+					<bind-xml name="controller" node="attribute" />
+				</field>
+			</class>
+		</bind-xml>
+		</field>
+	</class>
+</mapping>
