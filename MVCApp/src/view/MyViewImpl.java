@@ -23,6 +23,9 @@ public class MyViewImpl implements MyView {
 		model = m;
 	}
 	
+	/**
+	 * launches the frame
+	 */
 	public void launchFrame() {
 		JFrame frame = new JFrame("MyApp");
 		frame.setLayout(new BorderLayout());

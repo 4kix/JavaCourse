@@ -2,7 +2,7 @@
 "http://castor.org/mapping.dtd">
 
 <mapping>
-	<class name="controller.MyControllerFactory"> <!-- change class -->
+	<class name="controller.MyControllerFactory">
 		<map-to xml="mapping"/>
 		<field name="map" collection="map" get-method="getMap" set-method="setMap"> 
 		<bind-xml name="map">

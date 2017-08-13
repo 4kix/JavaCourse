@@ -5,6 +5,11 @@ import model.TextModel;
 import view.MyView;
 import view.MyViewImpl;
 
+/**An implementation of MyController
+ * 
+ * @author Ilya Falko
+ *
+ */
 public class MyControllerImpl implements MyController {
 
 	private TextModel model;
@@ -25,12 +30,17 @@ public class MyControllerImpl implements MyController {
 		this.model = model;
 	}
 
-	
+	/**
+	 * method, related to the "OK" button
+	 */
 	public void ok() {
 		ControllerManager manager = ControllerManager.getInstance();
-		MyView view = manager.getView();
-		model.setText(view.getTextArea().getText());
 		
+		//asking ControllerManager for a view, related to this controller
+		MyView view = manager.getView();
+		//getting data from the view and saving it in model
+		model.setText(view.getTextArea().getText());
+		//printing of the confirmation into console
 		System.out.println("ok pressed. Saved text: "+ model.getText());
 	}
 	

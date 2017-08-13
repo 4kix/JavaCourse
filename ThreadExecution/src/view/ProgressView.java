@@ -6,6 +6,7 @@ import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
 import javax.swing.JProgressBar;
 
+
 public class ProgressView {
 
 	private JProgressBar progressBar;
@@ -18,6 +19,9 @@ public class ProgressView {
 		progressBar.setStringPainted(true);
 	}
 	
+	/**
+	 * sets frame size and launches frame 
+	 */
 	public void launchFrame() {
 		
 		frame.add(progressBar, BorderLayout.CENTER);
@@ -26,20 +30,26 @@ public class ProgressView {
 		frame.setVisible(true);
 	}
 	
-	
+	/**
+	 * method smoothly sets progress bar value and calls {@link #refresh()} method
+	 * @param progress percentage of executed tasks
+	 */
 	public void setProgress(int progress) {
 		for (int i = progressBar.getValue(); i < progress; i++) {
 			progressBar.setValue(i);
-			try {
+			refresh();
+			try {	
 				Thread.sleep(45);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
-		
 	}
 	
+	/**
+	 * refreshes frame
+	 */
 	public void refresh() {
 		frame.invalidate();
 		frame.validate();

@@ -28,7 +28,6 @@ public class MyMonitorThread implements Runnable
     {
     	ProgressView view = new ProgressView();
     	view.launchFrame();
-    	int progress = 0;
     	
         while(run){
                 System.out.println(
@@ -41,11 +40,9 @@ public class MyMonitorThread implements Runnable
                         this.executor.isShutdown(),
                         this.executor.isTerminated()));
                 
-                double quotient = (double)(this.executor.getCompletedTaskCount())/(double)(this.executor.getTaskCount());
-                progress = (int)(quotient*100 + 1);
-                
+                //setting progress
+                int progress = (int)countProgress();               
                 view.setProgress(progress);
-                view.refresh();
                 
                 try {
                     Thread.sleep(seconds*1000);
@@ -54,6 +51,13 @@ public class MyMonitorThread implements Runnable
                 }
                 
         }
-
+    }
+    
+    /**
+     * 
+     * @return returns percentage of executed tasks
+     */
+    private double countProgress() {
+    	return (double)(this.executor.getCompletedTaskCount())/(double)(this.executor.getTaskCount())*100 + 1;
     }
 }
