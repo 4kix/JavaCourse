@@ -34,12 +34,6 @@ public class MyControllerImpl implements MyController {
 	 * method, related to the "OK" button
 	 */
 	public void ok() {
-		ControllerManager manager = ControllerManager.getInstance();
-		
-		//asking ControllerManager for a view, related to this controller
-		MyView view = manager.getView();
-		//getting data from the view and saving it in model
-		model.setText(view.getTextArea().getText());
 		//printing of the confirmation into console
 		System.out.println("ok pressed. Saved text: "+ model.getText());
 	}

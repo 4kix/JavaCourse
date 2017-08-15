@@ -8,16 +8,18 @@ import javax.swing.JFrame;
 import javax.swing.JTextArea;
 
 import action.MyAction;
+import action.MyFocusListener;
 import model.TextModel;
 
 public class MyViewImpl implements MyView {
 
-	private JTextArea textArea;
+	private MyTextArea textArea;
 	private MyButton okBtn;
 	private TextModel model;
 	
 	public MyViewImpl(TextModel m) {
-		textArea = new JTextArea(3,10);
+		textArea = new MyTextArea(3,10, m);
+		textArea.addFocusListener(new MyFocusListener());
 		okBtn = new MyButton("OK", this);
 		okBtn.addActionListener(new MyAction());
 		model = m;
