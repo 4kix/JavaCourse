@@ -1,9 +1,7 @@
-package controller;
+package fwk;
 
 import java.lang.reflect.InvocationTargetException;
-import java.util.HashMap;
 
-import controller.interfaces.AbstractFactory;
 import controller.interfaces.MyController;
 import model.TextModel;
 import view.MyView;
@@ -20,10 +18,9 @@ public class ControllerManager {
 	private AbstractFactory factory;
 	private TextModel model;	
 	private MyView view;
-	private HashMap<String, MyController> cache = new HashMap<String, MyController>();
 	
 	private ControllerManager() {
-		factory = new MyControllerFactory();
+		factory = MyControllerFactoryProxy.getInstance();
 	}
 	
 	public static ControllerManager getInstance() {
@@ -62,16 +59,7 @@ public class ControllerManager {
 		
 		String viewName = view.getClass().getName();
 		
-		MyController controller = null;
-		
-		//getting the instance of controller by it's view and caching it
-		if(!cache.containsKey(viewName)) {
-			controller = factory.getByView(viewName);
-			cache.put(viewName, controller);
-		//retrieving controller from cache, if it was searched for in previous requests
-		} else {
-			controller = cache.get(viewName);
-		}
+		MyController controller = factory.getByView(viewName);
 		controller.setModel(model);	
 		return controller;
 		

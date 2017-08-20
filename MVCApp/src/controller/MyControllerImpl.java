@@ -2,8 +2,6 @@ package controller;
 
 import controller.interfaces.MyController;
 import model.TextModel;
-import view.MyView;
-import view.MyViewImpl;
 
 /**An implementation of MyController
  * 

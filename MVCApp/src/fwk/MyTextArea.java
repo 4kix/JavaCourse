@@ -1,4 +1,4 @@
-package view;
+package fwk;
 
 import javax.swing.JTextArea;
 

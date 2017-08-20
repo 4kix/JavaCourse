@@ -2,13 +2,10 @@ package action;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.lang.reflect.InvocationTargetException;
 
-import javax.swing.JButton;
-
-import controller.ControllerManager;
 import controller.interfaces.MyController;
-import view.MyButton;
+import fwk.ControllerManager;
+import fwk.MyButton;
 import view.MyView;
 
 /**Action listener for MyView implementations

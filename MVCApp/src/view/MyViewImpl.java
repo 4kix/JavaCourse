@@ -2,13 +2,13 @@ package view;
 
 import java.awt.BorderLayout;
 
-import javax.swing.BoxLayout;
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JTextArea;
 
 import action.MyAction;
 import action.MyFocusListener;
+import fwk.MyButton;
+import fwk.MyTextArea;
 import model.TextModel;
 
 public class MyViewImpl implements MyView {

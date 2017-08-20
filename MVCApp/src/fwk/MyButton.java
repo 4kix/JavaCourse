@@ -1,6 +1,8 @@
-package view;
+package fwk;
 
 import javax.swing.JButton;
+
+import view.MyViewImpl;
 
 /**An Implementation of JButton that knows it's view
  * 

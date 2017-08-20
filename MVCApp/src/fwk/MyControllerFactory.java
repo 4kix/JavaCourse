@@ -1,50 +1,50 @@
-package controller;
+package fwk;
 
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Reader;
-import java.io.Writer;
-import java.util.HashMap;
-import java.util.Map;
 
 import org.exolab.castor.mapping.Mapping;
 import org.exolab.castor.mapping.MappingException;
 import org.exolab.castor.xml.MarshalException;
-import org.exolab.castor.xml.Marshaller;
 import org.exolab.castor.xml.Unmarshaller;
 import org.exolab.castor.xml.ValidationException;
 import org.exolab.castor.xml.XMLContext;
 
-import controller.interfaces.AbstractFactory;
+import controller.MyControllerImpl;
 import controller.interfaces.MyController;
 
-/**An implementation of AbstractFactory for getting instances of controllers
+/**An implementation of AbstractFactory for getting instances of controllers.
+ * Also implements Singleton and Proxy patterns.
  * 
  * @author Ilya Falko
  *
  */
 public class MyControllerFactory implements AbstractFactory {
-
-	Map<String, String> map; 
 	
-	//---------Getters & Setters---------
-	public Map<String, String> getMap() {
-		return map;
-	}
-	public void setMap(Map<String, String> map) {
-		this.map = map;
-	}
+	private ViewToControllerMapping map = new ViewToControllerMapping();
 
 	
 	//--------Constructor-------------
-	public MyControllerFactory() {
-		map = new HashMap<String, String>();
+	private MyControllerFactory() {
+		
 	}
+
+	//------Singleton Holder---------
 	
+	private static class SingletonHolder {  
+	      public static final MyControllerFactory instance = new MyControllerFactory();  
+	   }
 	
 	//---------Methods------------
 	
+	/**
+	 * 
+	 * @return instance returns an instance of MyControllerFactory
+	 */
+	public static MyControllerFactory getInstance()  {  
+	      return SingletonHolder.instance;  
+	   }
 	
 	/**returns new instance of the controller, related to the view, specified as a method argument argument,
 	 * if it has mapping in map.xml
@@ -61,7 +61,7 @@ public class MyControllerFactory implements AbstractFactory {
 		MyControllerImpl controller = null;
 		try {
 			//getting a class of the controller, if it has a map
-			Class<?> cl = Class.forName(map.get(viewName));
+			Class<?> cl = Class.forName(map.getByKey(viewName));
 			controller = (MyControllerImpl)cl.newInstance();
 		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
 			e.printStackTrace();
@@ -74,20 +74,20 @@ public class MyControllerFactory implements AbstractFactory {
 	 */
 	private void loadMapping() {
 		Mapping mapping = new Mapping();
-		MyControllerFactory unmarshalled = null;
+		ViewToControllerMapping unmarshalled = null;
 		
 		try {
 			//loading of map context
-			mapping.loadMapping("D:/eclipse projects/MVCApp/src/mapping/mapping.xml");
+			mapping.loadMapping("./mapping/mapping.xml");
 			XMLContext context = new XMLContext();
 			context.addMapping(mapping);
 			
 			//unmarshalling of map.xml
 			Reader reader = new FileReader("map.xml");	
 			Unmarshaller unmarshaller = context.createUnmarshaller();
-			unmarshaller.setClass(MyControllerFactory.class);
+			unmarshaller.setClass(ViewToControllerMapping.class);
 
-			unmarshalled = (MyControllerFactory) unmarshaller.unmarshal(reader);	
+			unmarshalled = (ViewToControllerMapping) unmarshaller.unmarshal(reader);	
 			reader.close();
 			
 			
@@ -96,7 +96,7 @@ public class MyControllerFactory implements AbstractFactory {
 		}
 		
 		//saving map
-		this.map = unmarshalled.map;
+		this.map.setMap(unmarshalled.getMap());  
 		
 	}
 

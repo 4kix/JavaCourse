@@ -3,7 +3,7 @@ package action;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 
-import view.MyTextArea;
+import fwk.MyTextArea;
 
 public class MyFocusListener implements FocusListener {
 
