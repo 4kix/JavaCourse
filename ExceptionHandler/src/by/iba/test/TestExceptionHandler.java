@@ -4,6 +4,10 @@ import by.iba.handler.ExceptionHandler;
 import by.iba.handler.ExceptionHandlerInterface;
 import by.iba.exception.*;
 
+/**
+ * Main class
+ *
+ */
 public class TestExceptionHandler {
 
 	public static void main(String[] args) {

@@ -1,5 +1,10 @@
 import java.util.HashMap;
 
+/**Main class
+ * 
+ * @author Ilya Falko
+ *
+ */
 public class TestLoader {
 	public static void main(String[] args) throws Exception {
 

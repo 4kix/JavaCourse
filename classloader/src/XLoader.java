@@ -4,6 +4,12 @@ import java.io.IOException;
 import java.lang.reflect.Field;
 import java.util.HashMap;
 
+
+/**Custom classloader
+ * Doesn't load classes with size >300 KB
+ * 
+ *
+ */
 class XLoader extends ClassLoader {
 // карта отображения имен классов на файлы .class, где хранятся их определения
 	HashMap <String, String> mappings;
@@ -36,14 +42,7 @@ class XLoader extends ClassLoader {
 	}
 	
 	private boolean checkClass(Class<?> loadedClass) {
-		/*Field[] fields = loadedClass.getClass().getDeclaredFields();
-			
-		for (Field field : fields) {
-			
-			field.setAccessible(true);
-			Class typeOfField = field.getType();
-			
-		}*/
+		
 		ObjectSizer sizer = new ObjectSizer();
 		long size = sizer.getObjectSize(loadedClass);
 		System.out.println(size);

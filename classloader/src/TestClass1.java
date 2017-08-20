@@ -1,4 +1,8 @@
-
+/**First class for testing classloader
+ * 
+ * @author Ilya Falko
+ *
+ */
 public class TestClass1 implements TestClassInterface {
 	public double field1;
 	public int field2;

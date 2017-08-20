@@ -25,11 +25,8 @@ public class TestJSONMarshaller {
 			Marshaller marshaller = new MyMarshallerToJSON(writer);
 			marshaller.marshal(person);
 			
-			/*ObjectMapper mapper = new ObjectMapper();
-			Person person1 = mapper.readValue(new File("person.json"), Person.class);		
-			System.out.println(person1);*/
 			
-			//writer.close();
+			writer.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (MarshalException e) {

@@ -8,7 +8,7 @@ public class Person {
 
 
 	public Person(String name, String address, 
-	     String email, String phone) {
+	    String email, String phone) {
 	    this.name = name;
 	    this.address = address;
 	    this.email = email;
@@ -41,7 +41,7 @@ public class Person {
 	    this.phone = phone;
 	  }
 
-	  @Override
+	@Override
 	public String toString() {
 		  StringBuilder builder = new StringBuilder();
 		  builder.append("Person Attributes\n");

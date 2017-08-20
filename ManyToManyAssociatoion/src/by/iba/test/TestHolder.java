@@ -5,6 +5,10 @@ import by.iba.entity.Student;
 import by.iba.entity.UniversityMember;
 import by.iba.holder.AssociationHolder;
 
+/**
+ * Main class
+ *
+ */
 public class TestHolder {
 
 	public static void main(String[] args) {

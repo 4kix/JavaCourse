@@ -11,6 +11,11 @@ import org.exolab.castor.xml.ValidationException;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+/**An extension of Castor Marshaller class for marshalling in JSON
+ * 
+ * @author Ilya Falko
+ *
+ */
 public class MyMarshallerToJSON extends Marshaller {
 	
 	Writer writer;
@@ -24,6 +29,10 @@ public class MyMarshallerToJSON extends Marshaller {
 		writer = out;
 	}
 	
+	/**Marshalls objext in JSON
+	 * 
+	 * @param object An object for marshalling
+	 */
 	@Override
 	public void marshal(Object object) throws MarshalException, ValidationException {
 
