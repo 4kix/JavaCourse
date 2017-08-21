@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<project default="dist" name="BrokerClient">
+	<description>BrokerClient</description>
+	<property name="srcDir" location="src" />
+	<property name="buildDir" location="build" />
+	<property name="distDir" location="dist" />
+	
+	<property name="commonJar" location="common-20170819.jar" />
+	<property name="swingJar" location="swing-layout-1.0.4.jar" />
+	
+	<path id="classpath">
+      <pathelement path="${buildDir}"/>
+      <pathelement location="${commonJar}"/>
+      <pathelement location="${swingJar}"/>
+    </path>
+	
+	<target name="init">
+		<tstamp />
+		<mkdir dir="${buildDir}" />
+		<mkdir dir="${distDir}" />
+	</target>
+	<target name="compile" depends="init">
+		<javac srcdir="${srcDir}" destdir="${buildDir}">
+		<classpath refid="classpath" />
+		</javac>
+	</target>
+	<target name="dist" depends="compile">
+		<jar destfile="${distDir}/client-${DSTAMP}.jar" basedir="${buildDir}">
+			<zipgroupfileset dir="lib" includes="common-20170819.jar" />
+			<zipgroupfileset dir="lib" includes="swing-layout-1.0.4.jar" />
+			<manifest>
+				<attribute name="Built-By" value="${user.name}" />
+				<attribute name="Main-Class" value="Broker3TierClient" />
+			</manifest>
+		</jar>
+		<jar destfile="${distDir}/client-src-${DSTAMP}.jar" basedir="${srcDir}" />
+	</target>
+	<target name="clean">
+		<delete dir="${buildDir}" />
+		<delete dir="${distDir}" />
+	</target>
+</project>
